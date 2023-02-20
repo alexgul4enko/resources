@@ -1,6 +1,6 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on: [pull_request]
 jobs:
   build:
 
@@ -12,9 +12,15 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
     - name: bundle sizer
       uses: preactjs/compressed-size-action@v2
+
+    - name: bundle sizer one more
+      uses: andresz1/size-limit-action@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        script: yarn dlx size-limit --json
 
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
