@@ -20,6 +20,8 @@ import isEmpty from 'lodash/isEmpty'
 import get from 'lodash/get'
 import has from 'lodash/has'
 
+import _ from 'lodash'
+
 export const REQUEST = '@resource/request'
 export const SET_DATA = '@resource/set-data'
 const SET_ERRORS = '@resource/set-errors'
@@ -28,6 +30,8 @@ const SET_FILTERS = '@resource/set-filters'
 const CLEAR_RESOURCES = '@resource/clear'
 export const PERSIST = '@@Persist@@'
 export const CLEAR_ALL = '@@CLEAR_ALL@@'
+
+console.log(_)
 
 
 export function clearAllData(payload) {
@@ -293,7 +297,7 @@ export function epic(action$, store, { API, navigate }) { // FIXME API
     })
 }
 
-const PERSIST_WHITE_LIST = JSON.parse(get(process, 'env.PERSIST_WHITE_LIST') ? process.env.PERSIST_WHITE_LIST : require('react-native-config').default.PERSIST_WHITE_LIST)
+const PERSIST_WHITE_LIST = process.env.PERSIST_WHITE_LIST
 
 export function combineReducers(reducers, initialState = {}) {
   return (state = initialState, action) => {
